@@ -1,0 +1,46 @@
+version: 2
+
+macros:
+  - name: drop_constraints
+    description: '{{ doc("drop_constraints") }}'
+    docs:
+      show: true
+    arguments:
+      - name: this
+        type: "Jinja"
+        description: '{{ doc("dbt_this") }}'
+
+  - name: foreign_key
+    description: '{{ doc("foreign_key") }}'
+    docs:
+      show: true
+    arguments:
+      - name: model
+        type: "string"
+        description: "Use the dbt Jinja ```this``` to refer to your model"
+      - name: source_column
+        type: "string"
+        description: "Source column. Only one column permitted."
+      - name: reference_model
+        type: "string"
+        description: "Which model to refence. User dbt ```ref('model')``` syntax."
+      - name: reference_column
+        type: "string"
+        description: "Reference column. Only one column permitted."
+    
+  - name: primary_key
+    description: "Create primary key constraint"
+    docs:
+      show: true
+    arguments:
+      - name: this
+        type: "string"
+        description: "Use the dbt Jinja ```this``` to refer to your model"
+      - name: column
+        type: "string"
+        description: "Primary key column. Only one column permitted."
+
+  - name: resize_warehouse_with_full_refresh
+    description: "Resizes warehouse when --full-refresh is defined. Uses variables in dbt_project.yml"
+    docs:
+      show: true
